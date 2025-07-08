@@ -1,1 +1,1 @@
-# zot_plug_frontend
+# ZotPlug Frontend
