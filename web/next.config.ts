@@ -1,28 +1,17 @@
-import type { NextConfig } from 'next'
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ['ui'],
   webpack: (config) => {
-    config.resolve = {
-      ...(config.resolve || {}),
-      alias: {
-        ...(config.resolve?.alias || {}),
-        'react-native$': 'react-native-web',
-      },
-      extensions: [
-        ...(config.resolve?.extensions || []),
-        '.web.tsx',
-        '.web.ts',
-        '.web.js',
-        '.tsx',
-        '.ts',
-        '.js',
-      ],
-    }
-    return config
-  },
-}
+    // This is the critical fix: apply alias at the root level
+    config.resolve.alias = {
+      ...(config.resolve.alias || {}),
+      'react-native': require.resolve('react-native-web'),
+    };
 
-export default nextConfig
+    return config;
+  },
+};
+
+export default nextConfig;
 

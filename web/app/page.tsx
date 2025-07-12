@@ -1,9 +1,11 @@
-import { Hello } from "ui"
-
+import { Hello } from "ui";
 
 export default function Home() {
   return (
-    <Hello />
-
-  )
+    <>
+      <div className="bg-red-500 w-full h-10">Test test</div>
+      <Hello />
+    </>
+  );
 }
+
