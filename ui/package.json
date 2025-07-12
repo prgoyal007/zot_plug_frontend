@@ -5,14 +5,11 @@
   "exports": {
     ".": "./index.tsx"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "peerDependencies": {
-    "react-native": "*"
+    "react-native": "^0.80.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.8",
+    "react": "^19.1.0"
   }
 }
