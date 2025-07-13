@@ -30,16 +30,18 @@
    npm run dev
 ```
 **Mobile-Dev**
-1. 
+
+1. **Download Simulators** 
 - **Download Andriod SDK ( Android Dev )**
     - [Android SDK](https://docs.expo.dev/workflow/android-studio-emulator/)
 - **Download iOS Simulator ( iOS Dev - Need macOS )**
     - [iOS Simulator](https://docs.expo.dev/workflow/ios-simulator/)
-2.
+
+2. **Install packages & run simulator **
 ```bash
     cd mobile
     npm install
-    npm run android # or:npm run ios
+    npm run android # or: npm run ios
 ```
 
 
