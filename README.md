@@ -2,48 +2,55 @@
 
 ## 📦 Tech Stack
 
-**Web:**
-- Framework: React / Next.js / react-native-web 
-- Styling: Tailwind CSS
-- Tooling: TypeScript / ESLint 
+### Web
 
-**Mobile:**
-- Framwork: React / Expo / react-native
-- Styling: CSS / nativewind
-- Tooling: TypScript
+* **Framework:** React / Next.js / react-native-web
+* **Styling:** Tailwind CSS
+* **Tooling:** TypeScript / ESLint
+
+### Mobile
+
+* **Framework:** React / Expo / react-native
+* **Styling:** CSS / nativewind
+* **Tooling:** TypeScript
 
 ---
 
 ## ⚙️ Prerequisites
 
-- [Node.js](https://nodejs.org/) vXX+
-- [npm](https://www.npmjs.com/)
+* [Node.js](https://nodejs.org/) vXX+
+* [npm](https://www.npmjs.com/)
 
 ---
 
 ## 🚀 Getting Started
 
-**Web-Dev**
-```bash
-   cd web
-   npm install
-   npm run dev
-```
-**Mobile-Dev**
+### Web Development
 
-1. **Download Simulators** 
-- **Download Andriod SDK ( Android Dev )**
-    - [Android SDK](https://docs.expo.dev/workflow/android-studio-emulator/)
-- **Download iOS Simulator ( iOS Dev - Need macOS )**
-    - [iOS Simulator](https://docs.expo.dev/workflow/ios-simulator/)
-
-2. **Install packages & run simulator **
 ```bash
-    cd mobile
-    npm install
-    npm run android # or: npm run ios
+cd web
+npm install
+npm run dev
 ```
 
+### Mobile Development
+
+#### 1. Download Simulators
+
+* **Android SDK (Android Dev)**
+
+  * [Android SDK Setup Guide](https://docs.expo.dev/workflow/android-studio-emulator/)
+* **iOS Simulator (iOS Dev – Requires macOS)**
+
+  * [iOS Simulator Setup Guide](https://docs.expo.dev/workflow/ios-simulator/)
+
+#### 2. Install Packages & Run Simulator
+
+```bash
+cd mobile
+npm install
+npm run android   # or: npm run ios
+```
 
 
 
