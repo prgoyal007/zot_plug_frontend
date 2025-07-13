@@ -2,12 +2,12 @@
 
 ## 📦 Tech Stack
 
-Web:
+**Web:**
 - Framework: React / Next.js / react-native-web 
 - Styling: Tailwind CSS
 - Tooling: TypeScript / ESLint 
 
-Mobile:
+**Mobile:**
 - Framwork: React / Expo / react-native
 - Styling: CSS / nativewind
 - Tooling: TypScript
@@ -23,17 +23,17 @@ Mobile:
 
 ## 🚀 Getting Started
 
-** Web-Dev **
+**Web-Dev**
 ```bash
    cd web
    npm install
    npm run dev
 ```
-** Mobile-Dev **
+**Mobile-Dev**
 1. 
-- ** Download Andriod SDK ( Android Dev ) **
+- **Download Andriod SDK ( Android Dev )**
     - [Android SDK](https://docs.expo.dev/workflow/android-studio-emulator/)
-- ** Download iOS Simulator ( iOS Dev - Need macOS ) **
+- **Download iOS Simulator ( iOS Dev - Need macOS )**
     - [iOS Simulator](https://docs.expo.dev/workflow/ios-simulator/)
 2.
 ```bash
