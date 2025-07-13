@@ -9,11 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.83.0",
+    "api": "file:../lib/api/",
     "next": "15.3.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-native": "^0.80.1",
-    "react-native-web": "^0.20.0"
+    "react-native-web": "^0.20.0",
+    "ui": "file:../lib/ui"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

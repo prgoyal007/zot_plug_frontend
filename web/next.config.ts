@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ['ui'],
+  transpilePackages: ['ui', 'api'],
   webpack: (config) => {
     // This is the critical fix: apply alias at the root level
     config.resolve.alias = {
