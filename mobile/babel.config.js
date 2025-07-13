@@ -3,7 +3,7 @@ module.exports = {
   presets: ['babel-preset-expo'],
   overrides: [
     {
-      include: ['../ui'],
+      include: ['../lib/ui', '../lib/api/'],
       presets: [], // remove metro-react-native-babel-preset
     },
   ],
