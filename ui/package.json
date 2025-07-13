@@ -6,10 +6,8 @@
     ".": "./index.tsx"
   },
   "peerDependencies": {
-    "react-native": "^0.80.1"
-  },
-  "devDependencies": {
-    "@types/react": "^19.1.8",
-    "react": "^19.1.0"
+    "react": "*",
+    "react-native": "*"
   }
 }
+
