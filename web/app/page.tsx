@@ -1,5 +1,5 @@
 'use client'
-import { Hello } from 'ui'
+import { Test } from 'ui/test'
 import { useQuery } from '@tanstack/react-query';
 import { fetch_test } from './api_utils/api_actions';
 import { useEffect } from 'react';
@@ -24,10 +24,10 @@ export default function Home() {
       {/* Tailwind in-line styling */}
       <div className="bg-red-500 w-full h-10"> test test</div>
       { /* Shared UI comp, check proj_root/ui to check how this works */}
-      <Hello />
       <div className="bg-green-500 w-full h-10">
         {isLoading ? "Fetching_data" : "Data logged to client console"}
       </div>
+      <Test />
     </>
   );
 }

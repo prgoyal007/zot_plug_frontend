@@ -5,7 +5,7 @@ export async function GET() {
 	const data = await test()
 	console.log("Logging from the back")
 	console.log(data)
-	return NextResponse.json(data)
+	return NextResponse.json(data ?? null)
 }
 
 

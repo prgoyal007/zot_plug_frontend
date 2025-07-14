@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from 'react-native';
 
-export function Hello() {
+export function Test() {
 	return (
 		<View style={styles.container}>
 			<Text style={styles.text}>Hello from shared UI</Text>
@@ -24,5 +24,3 @@ const styles = StyleSheet.create({
 
 	},
 });
-
-

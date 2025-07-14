@@ -1,9 +1,9 @@
-import { Hello } from "ui"
+import { Test } from "ui/test"
 import { test } from "api/data"
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 
-export default function Test() {
+export default function Test_tab() {
 
   /* useQuery is best for any kind of data fetching logic */
   const { data: test_data, isLoading } = useQuery({
@@ -18,6 +18,6 @@ export default function Test() {
   }, [isLoading, test_data])
 
   return (
-    <Hello />
+    <Test />
   );
 }

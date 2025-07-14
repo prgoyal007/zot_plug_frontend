@@ -1,10 +1,17 @@
 export async function fetch_test() {
 	try {
-		const data = await fetch("/api/test", {
+		const res = await fetch("/api/test", {
 			method: "GET",
 		});
-		return await data.json()
+		const data = await res.text()
+
+		if (data.trim() !== "") {
+			return JSON.parse(data)
+		} else {
+			throw new Error("rest_api from zot_plug_infra did not respond ")
+		}
 	} catch (error) {
 		console.error("Error fetching data:", error)
+		return { error }
 	}
 }
