@@ -1,5 +1,5 @@
 # Stage 1: Builder
-FROM node:20-slim AS builder
+FROM node:20-alpine AS builder
 
 WORKDIR /app_root/web
 
@@ -17,7 +17,7 @@ COPY ./lib/ /app_root/lib
 RUN npm run build
 
 # Stage 2: Production
-FROM node:20-slim AS runner
+FROM node:20-alpine AS runner
 
 WORKDIR /app_root/web
 
