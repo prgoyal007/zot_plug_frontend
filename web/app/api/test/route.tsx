@@ -2,8 +2,9 @@ import { NextResponse } from 'next/server';
 import { test } from "api/data"
 
 export async function GET() {
+	const baseUrl = process.env.BASE_URL || 'http://localhost:4000';
 	try {
-		const data = await test()
+		const data = await test(baseUrl)
 		if (data) {
 			console.log("Logging from the back")
 			console.log(data)

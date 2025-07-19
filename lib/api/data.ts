@@ -1,21 +1,20 @@
-export async function test() {
-	const test_url = "http://192.168.1.146:4000";
-
+export async function test(baseUrl: string) {
+	console.log("Request URL, from shared api/frontend: ", baseUrl)
 	try {
-		const res = await fetch(test_url, {
+		const res = await fetch(baseUrl, {
 			method: "GET",
-		});
+		})
 
 		if (!res.ok) {
-			console.error(`Server responded with status ${res.status}`);
-			return null;
+			console.error(`Server responded with status ${res.status}`)
+			return null
 		}
 
-		const data = await res.text();
-		return data ?? null;
+		const data = await res.text()
+		return data ?? null
 	} catch (err: any) {
-		console.error(" Fetch failed from shared API:", err.message || err);
-		return null;
+		console.error(" Fetch failed from shared API:", err.message || err)
+		return null
 	}
 }
 
