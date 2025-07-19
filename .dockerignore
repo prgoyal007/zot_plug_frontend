@@ -1,0 +1,10 @@
+node_modules
+*.ts
+*.tsx
+.dockerignore
+Dockerfile
+.vscode
+.git
+tests
+.env*
+
