@@ -2,10 +2,18 @@ import { NextResponse } from 'next/server';
 import { test } from "api/data"
 
 export async function GET() {
-	const data = await test()
-	console.log("Logging from the back")
-	console.log(data)
-	return NextResponse.json(data ?? null)
+	try {
+		const data = await test()
+		if (data) {
+			console.log("Logging from the back")
+			console.log(data)
+			return NextResponse.json(data)
+		}
+		throw new Error("Failed req, from web/app/api_utils")
+	} catch (err) {
+		console.log(err)
+		return NextResponse.json(null)
+	}
 }
 
 
