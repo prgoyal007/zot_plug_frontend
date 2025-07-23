@@ -5,7 +5,7 @@ export async function fetch_test() {
 		});
 		const data = await res.text()
 
-		if (data.trim() !== "") {
+		if (data) {
 			return JSON.parse(data)
 		} else {
 			throw new Error("rest_api from zot_plug_infra did not respond ")
