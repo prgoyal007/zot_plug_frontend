@@ -18,4 +18,4 @@ export async function GET() {
 }
 
 
-/* Test API file, that uses the share lib/areact-querypi */
+/* Test API file, that uses the share lib/api */
