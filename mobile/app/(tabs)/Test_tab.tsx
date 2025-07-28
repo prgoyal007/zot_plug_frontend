@@ -5,12 +5,16 @@ import { useEffect } from "react";
 
 export default function Test_tab() {
 
-  const base_url_api = 'http://localhost:4000'
+  const LOCAL_IP = 'your_local_ip'
+
+  const BASE_URL = __DEV__
+    ? `http://${LOCAL_IP}:4000`
+    : 'https://your-production-url.com'
 
   /* useQuery is best for any kind of data fetching logic */
   const { data: test_data, isLoading } = useQuery({
     queryKey: ['test'],
-    queryFn: async () => await test(base_url_api)
+    queryFn: async () => await test(BASE_URL)
   })
 
   useEffect(() => {
