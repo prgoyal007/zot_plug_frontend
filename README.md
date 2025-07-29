@@ -52,5 +52,24 @@ npm install
 npm run android   # or: npm run ios
 ```
 
+## 💻⚙️Dev Workflow
+
+#### 1. Launch the backend
+  * Start the backend server by following the steps in our [Platform Dev Workflow](https://github.com/KChun510/zot_plug_platform?tab=readme-ov-file#%EF%B8%8Fsoftware-development-workflow:~:text=%F0%9F%92%BB%E2%9A%99%EF%B8%8FSoftware%20Development%20Workflow)
+
+#### 2. Launch the web or mobile environment
+```bash
+# Web Dev
+cd web
+npm run dev
+
+# Mobile dev
+cd mobile
+npm run android
+```
+
+
+
+
 
 
