@@ -52,6 +52,12 @@ npm install
 npm run android   # or: npm run ios
 ```
 
+#### 3. Copy env.example -> .env, while in ./mobile DIR
+```bash
+# Open .env, and change it to your local IP
+API_URL=http://YOUR_LOCAL_IP:4000
+```
+
 ## 💻⚙️Dev Workflow
 
 #### 1. Launch the backend
