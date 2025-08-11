@@ -25,8 +25,10 @@ export default function Test_tab() {
   return (
     <View style={styles.container}>
       <Test />
-      <TestButton onPress={async () => await api.fetchJSON<{ message: string }>({ endpoint: "/", method: "GET" })
-      } />
+      <TestButton onPress={async () => {
+        const data = await api.fetchJSON<{ message: string }>({ endpoint: "/", method: "GET" })
+        console.log(data)
+      }} />
     </View>
   );
 }
