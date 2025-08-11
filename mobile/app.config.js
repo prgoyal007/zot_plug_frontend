@@ -1,7 +1,12 @@
-{
+import 'dotenv/config'
+
+export default {
   "expo": {
     "name": "zot_plug_mobile",
     "slug": "zot_plug_mobile",
+    "extra": {
+      "API_URL": process.env.API_URL
+    },
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -37,6 +42,6 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
   }
 }

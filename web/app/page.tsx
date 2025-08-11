@@ -5,7 +5,6 @@ import { fetch_test } from './api_utils/api_actions';
 import { useEffect } from 'react';
 
 export default function Home() {
-
   /* useQuery is best for any kind of data fetching logic */
   const { data: test_data, isLoading } = useQuery({
     queryKey: ['test'],

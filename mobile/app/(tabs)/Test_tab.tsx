@@ -1,20 +1,17 @@
+import Constants from "expo-constants"
 import { Test } from "ui/test"
-import { test } from "api/data"
-import { useQuery } from "@tanstack/react-query";
+import { createApiClient } from "api/req"
+import { useQuery } from "@tanstack/react-query"
 import { useEffect } from "react";
 
 export default function Test_tab() {
 
-  const LOCAL_IP = 'your_local_ip'
-
-  const BASE_URL = __DEV__
-    ? `http://${LOCAL_IP}:4000`
-    : 'https://your-production-url.com'
+  const api = createApiClient({ device: "mobile", baseUrlOverride: Constants.expoConfig?.extra?.API_URL })
 
   /* useQuery is best for any kind of data fetching logic */
   const { data: test_data, isLoading } = useQuery({
     queryKey: ['test'],
-    queryFn: async () => await test(BASE_URL)
+    queryFn: async () => await api.fetchJSON<{ message: string }>({ endpoint: "/", method: "GET" })
   })
 
   useEffect(() => {
