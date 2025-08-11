@@ -1,5 +1,7 @@
 import Constants from "expo-constants"
+import { View, StyleSheet } from 'react-native';
 import { Test } from "ui/test"
+import { TestButton } from "ui/test_button"
 import { createApiClient } from "api/req"
 import { useQuery } from "@tanstack/react-query"
 import { useEffect } from "react";
@@ -21,6 +23,19 @@ export default function Test_tab() {
   }, [isLoading, test_data])
 
   return (
-    <Test />
+    <View style={styles.container}>
+      <Test />
+      <TestButton onPress={async () => await api.fetchJSON<{ message: string }>({ endpoint: "/", method: "GET" })
+      } />
+    </View>
   );
 }
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+})

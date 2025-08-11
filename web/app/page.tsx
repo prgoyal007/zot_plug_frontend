@@ -1,5 +1,6 @@
 'use client'
 import { Test } from 'ui/test'
+import { TestButton } from 'ui/test_button'
 import { useQuery } from '@tanstack/react-query';
 import { fetch_test } from './api_utils/api_actions';
 import { useEffect } from 'react';
@@ -26,7 +27,13 @@ export default function Home() {
       <div className="bg-green-500 w-full h-10">
         {isLoading ? "Fetching_data" : "Data logged to client console"}
       </div>
-      <Test />
+      <div className="flex flex-col justify-center mt-4 gap-y-4">
+        <Test />
+        <TestButton onPress={async () => {
+          const data = await fetch_test()
+          console.log(data)
+        }} />
+      </div>
     </>
   );
 }
