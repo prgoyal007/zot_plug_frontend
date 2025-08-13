@@ -11,11 +11,12 @@ function joinUrl(base: string, endpoint: string) {
 }
 
 export function createApiClient(params: { device: Device, baseUrlOverride?: string }) {
-	const baseUrl =
-		params.baseUrlOverride ??
-		(params.device === "web"
-			? "http://localhost:4000"
-			: "https://zotplug.com/mobile_api");
+	const baseUrl = process.env.BASE_URL ??
+		(params.baseUrlOverride ??
+			(params.device === "web"
+				? "http://localhost:4000"
+				: "https://zotplug.com/mobile_api"))
+	console.log(baseUrl)
 
 	async function fetchJSON<T>(params: {
 		endpoint: string,
