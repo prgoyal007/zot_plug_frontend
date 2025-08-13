@@ -16,7 +16,6 @@ export function createApiClient(params: { device: Device, baseUrlOverride?: stri
 			(params.device === "web"
 				? "http://localhost:4000"
 				: "https://zotplug.com/mobile_api"))
-	console.log(baseUrl)
 
 	async function fetchJSON<T>(params: {
 		endpoint: string,
