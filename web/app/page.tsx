@@ -1,11 +1,14 @@
 'use client'
 import { Test } from 'ui/test'
 import { TestButton } from 'ui/test_button'
-import { useQuery } from '@tanstack/react-query';
-import { fetch_test } from './api_utils/api_actions';
-import { useEffect } from 'react';
+import { BasicButton } from 'ui/basic_button'
+import { useQuery } from '@tanstack/react-query'
+import { fetch_test } from './api_utils/api_actions'
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
+  const router = useRouter()
   /* useQuery is best for any kind of data fetching logic */
   const { data: test_data, isLoading } = useQuery({
     queryKey: ['test'],
@@ -33,6 +36,7 @@ export default function Home() {
           const data = await fetch_test()
           console.log(data)
         }} />
+        <BasicButton text='Login' onPress={() => router.push('/login')} />
       </div>
     </>
   );
