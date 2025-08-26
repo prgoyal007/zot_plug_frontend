@@ -3,7 +3,7 @@ import { TextInput, View, Text, StyleSheet } from 'react-native'
 import BasicButton from '../basic_button'
 
 type LoginComp = {
-	onSubmit: (email: string, pass: string) => any
+	onSubmit: (email: string, pass: string) => void
 }
 
 export default function LoginComp({ onSubmit }: LoginComp) {
