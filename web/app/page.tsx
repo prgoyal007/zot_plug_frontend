@@ -1,7 +1,7 @@
 'use client'
 import { Test } from 'ui/test'
 import { TestButton } from 'ui/test_button'
-import { BasicButton } from 'ui/basic_button'
+import BasicButton from 'ui/basic_button'
 import { useQuery } from '@tanstack/react-query'
 import { fetch_test } from './api_utils/api_actions'
 import { useEffect } from 'react'

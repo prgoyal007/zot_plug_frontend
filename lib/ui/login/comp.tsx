@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { TextInput, View, Text, StyleSheet } from 'react-native'
 import BasicButton from '../basic_button'
 
@@ -9,6 +9,13 @@ type LoginComp = {
 export default function LoginComp({ onSubmit }: LoginComp) {
 	const [user, set_user] = useState("")
 	const [pass, set_pass] = useState("")
+
+	useEffect(() => {
+		if (pass != undefined) {
+			console.log(pass)
+		}
+	}, [pass])
+
 	return (
 		<View style={styles.container}>
 			<TextInput

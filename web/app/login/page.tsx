@@ -6,8 +6,12 @@ export default function Login() {
 
   async function try_login(email: string, pass: string): Promise<void> {
     const res = await login_user(email, pass)
-    console.log(res)
+    if (res.ok) {
+      const { userId } = res
+      // use a router .push dashbored page
+    }
 
+    console.log(res)
   }
 
   return (

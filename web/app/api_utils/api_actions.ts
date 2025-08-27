@@ -18,7 +18,7 @@ export async function fetch_test() {
 	}
 }
 
-export async function login_user(email: string, password: string): Promise<Result<{ userID: string }>> {
+export async function login_user(email: string, password: string): Promise<Result<{ userId: string }>> {
 	try {
 		const login_res = await fetch('/api/login', {
 			method: "POST",
@@ -28,11 +28,11 @@ export async function login_user(email: string, password: string): Promise<Resul
 			},
 			body: JSON.stringify({
 				email,
-				password_hash: password
+				password
 			})
 		}).then(e => e.json())
-		if (!login_res.valid) throw new Error(login_res.message)
-		return { ok: true, value: login_res.userID }
+		if (!login_res.ok) throw new Error(login_res.message)
+		return { ok: true, value: { userId: login_res.userId } }
 	} catch (err) {
 		console.error("Error logging in user: ", err)
 		return { ok: false, error: err }
