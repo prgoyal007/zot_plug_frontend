@@ -17,12 +17,12 @@ export async function POST(req: NextRequest) {
 
 	try {
 		const api = createApiClient({ device: "web" })
-		const checkUserCredRes = await api.fetchJSON<CheckUserCredsRes>({ endpoint: "/api/users/checkUserCreds", method: "POST", body: { email, password } })
+		const { valid, userId } = await api.fetchJSON<CheckUserCredsRes>({ endpoint: "/api/users/checkUserCreds", method: "POST", body: { email, password } })
 
-		if (checkUserCredRes.valid) {
-			const sessionRes = await api.fetchJSON<SessionRes>({ endpoint: "/api/users/createSession", method: "POST", body: { userId: checkUserCredRes.userId, ip: "0.0.0.0", userAgent: "N/A" } })
-			console.log(sessionRes)
-			const response = NextResponse.json({ ok: true, userId: checkUserCredRes.userId, message: "Login successful" });
+		if (valid) {
+			const sessionRes = await api.fetchJSON<SessionRes>({ endpoint: "/api/users/createSession", method: "POST", body: { userId, ip: "0.0.0.0", userAgent: "N/A" } })
+
+			const response = NextResponse.json({ ok: true, userId: userId, message: "Login successful" });
 			response.headers.set(
 				"Set-Cookie",
 				serialize("session", sessionRes.sessionId, {

@@ -10,12 +10,6 @@ export default function LoginComp({ onSubmit }: LoginComp) {
 	const [user, set_user] = useState("")
 	const [pass, set_pass] = useState("")
 
-	useEffect(() => {
-		if (pass != undefined) {
-			console.log(pass)
-		}
-	}, [pass])
-
 	return (
 		<View style={styles.container}>
 			<TextInput

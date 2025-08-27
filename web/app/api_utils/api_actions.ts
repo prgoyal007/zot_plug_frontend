@@ -39,4 +39,15 @@ export async function login_user(email: string, password: string): Promise<Resul
 	}
 }
 
+export async function valUserID(id: string): Promise<boolean> {
+	const res = await fetch('/api/valSession',
+		{
+			method: "GET",
+			credentials: "same-origin"
+		}
+	).then(async e => await e.json())
+
+	return res.userId == id
+}
+
 
