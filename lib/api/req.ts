@@ -10,7 +10,7 @@ function joinUrl(base: string, endpoint: string) {
 	return `${base}${endpoint}`;
 }
 
-export function createApiClient(params: { device: Device, baseUrlOverride?: string }) {
+export default function createApiClient(params: { device: Device, baseUrlOverride?: string }) {
 	const baseUrl = process.env.BASE_URL ??
 		(params.baseUrlOverride ??
 			(params.device === "web"

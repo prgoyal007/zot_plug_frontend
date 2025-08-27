@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createApiClient } from "api/req";
 import { serialize } from "cookie";
+import createApiClient from "api/req";
 
 type Creds = {
 	email: string,
@@ -18,8 +18,6 @@ export async function POST(req: NextRequest) {
 	try {
 		const api = createApiClient({ device: "web" })
 		const checkUserCredRes = await api.fetchJSON<CheckUserCredsRes>({ endpoint: "/api/users/checkUserCreds", method: "POST", body: { email, password } })
-		console.log(checkUserCredRes)
-
 
 		if (checkUserCredRes.valid) {
 			const sessionRes = await api.fetchJSON<SessionRes>({ endpoint: "/api/users/createSession", method: "POST", body: { userId: checkUserCredRes.userId, ip: "0.0.0.0", userAgent: "N/A" } })
