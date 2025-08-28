@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { createApiClient } from 'api/req'
+import createApiClient from 'api/req'
 
 export async function GET() {
 	interface test_res { message: string }
