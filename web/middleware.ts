@@ -1,24 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function middleware(req: NextRequest) {
-  const { pathname, origin } = req.nextUrl;
+  const { pathname } = req.nextUrl;
+  if (!pathname.startsWith("/dashboard")) return NextResponse.next();
 
-  // only guard dashboard
-  //if (!pathname.startsWith("/dashboard")) return NextResponse.next();
+  const cookieHeader = req.headers.get("cookie") ?? "";
+  if (!cookieHeader) return NextResponse.redirect(new URL("/login", req.url));
 
-  const sessionCookie = req.headers.get("cookie")?.match(/session=([^;]*)/)?.[1];
-
-  if (!sessionCookie) {
-    return NextResponse.redirect(new URL("/login", req.url));
-  }
-
+  // Build absolute URL using forwarded headers from Nginx
+  const xfProto = req.headers.get("x-forwarded-proto") || "http";
+  const xfHost = req.headers.get("x-forwarded-host") || req.headers.get("host");
+  const origin = `${xfProto}://${xfHost}`;
   const url = new URL("/api/valSession", origin);
-  console.log("Making a val req")
 
   const sessionRes = await fetch(url, {
     method: "GET",
-    headers: { Cookie: `session=${sessionCookie}` },
-    cache: "no-store"
+    headers: { cookie: cookieHeader },
+    cache: "no-store",
   });
 
   if (!sessionRes.ok) {
@@ -28,7 +26,5 @@ export async function middleware(req: NextRequest) {
   return NextResponse.next();
 }
 
-export const config = {
-  matcher: ["/dashboard/:path*"]
-};
+export const config = { matcher: ["/dashboard/:path*"] };
 

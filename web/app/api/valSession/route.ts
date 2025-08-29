@@ -24,7 +24,7 @@ export async function GET(req: NextRequest) {
 	const corsHeaders = getCorsHeaders(origin);
 
 	const cookies = parse(req.headers.get("cookie") || "");
-	const browserSessionId = cookies.session;
+	const browserSessionId = cookies["__Host-session"] ?? cookies["session"]
 
 	const { sessionId, userId } = await api.fetchJSON<{ sessionId: string, userId: string }>({ method: "POST", endpoint: "/api/users/getSession", body: { sessionId: browserSessionId ?? "" } })
 

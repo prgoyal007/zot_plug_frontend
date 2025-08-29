@@ -12,7 +12,6 @@ export default function Login() {
     if (res.ok) {
       const { userId } = res.value
       router.push(`/dashboard/${userId}`)
-      // use a router .push dashbored page
     } else {
       console.log("Login Failed")
     }

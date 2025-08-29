@@ -1,3 +1,4 @@
+// Use this generic, if your API res contains a body + non boolean value.
 type Result<T> = { ok: true; value: T } | { ok: false, error: string | unknown }
 
 export async function fetch_test() {
