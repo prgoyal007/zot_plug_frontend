@@ -1,5 +1,5 @@
-// Use this generic, if your API res contains a body + non boolean value.
-type Result<T> = { ok: true; value: T } | { ok: false, error: string | unknown }
+import { toErrorMessage } from "./helper";
+type Result<T> = { ok: true; value: T } | { ok: false, error: string }
 
 export async function fetch_test() {
 	try {
@@ -35,8 +35,7 @@ export async function login_user(email: string, password: string): Promise<Resul
 		if (!login_res.ok) throw new Error(login_res.message)
 		return { ok: true, value: { userId: login_res.userId } }
 	} catch (err) {
-		console.error("Error logging in user: ", err)
-		return { ok: false, error: err }
+		return { ok: false, error: toErrorMessage(err) }
 	}
 }
 

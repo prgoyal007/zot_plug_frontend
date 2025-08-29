@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { toErrorMessage } from "@/app/api_utils/helper";
 import { serialize } from "cookie";
 import createApiClient from "api/req";
 
@@ -9,11 +10,20 @@ const isProd = process.env.NODE_ENV === "production"
 const cookieName = isProd ? "__Host-session" : "session"
 const api = createApiClient({ device: "web" })
 
+function basisFieldCheck(email: string, password: string): string | null {
+	if (email === "") return "Email field is empty."
+	if (password === "") return "Password field is empty."
+	return null
+}
+
 export async function POST(req: NextRequest) {
 	const body: Creds = await req.json()
 	const { email, password } = body
 
 	try {
+		const basicCheckRes = basisFieldCheck(email, password)
+		if (basicCheckRes) throw new Error(basicCheckRes)
+
 		const { valid, userId } = await api.fetchJSON<CheckUserCredsRes>({ endpoint: "/api/users/checkUserCreds", method: "POST", body: { email, password } })
 		if (valid) {
 			const sessionRes = await api.fetchJSON<SessionRes>({ endpoint: "/api/users/createSession", method: "POST", body: { userId, ip: "0.0.0.0", userAgent: "N/A" } })
@@ -31,9 +41,9 @@ export async function POST(req: NextRequest) {
 			);
 			return response
 		} else {
-			return NextResponse.json({ ok: false, message: "Login failed" })
+			return NextResponse.json({ ok: false, message: "Invalid Credentials" })
 		}
 	} catch (err) {
-		return NextResponse.json({ ok: false, message: err })
+		return NextResponse.json({ ok: false, message: toErrorMessage(err) })
 	}
 }

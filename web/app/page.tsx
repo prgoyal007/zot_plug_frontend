@@ -36,7 +36,7 @@ export default function Home() {
           const data = await fetch_test()
           console.log(data)
         }} />
-        <BasicButton text='Login' onPress={() => router.push('/login')} />
+        <BasicButton text='Login' onPress={() => router.push('/auth?mode=login')} />
       </div>
     </>
   );
