@@ -1,13 +1,19 @@
 {
   "name": "ui",
   "version": "1.0.0",
-  "main": "index.tsx",
   "exports": {
     "./*": "./*.tsx"
   },
   "peerDependencies": {
     "react": "*",
     "react-native": "*"
+  },
+  "devDependencies": {
+    "react": "*",
+    "react-native": "*",   
+    "@types/react": "*",
+    "@types/react-native": "*",
+    "typescript": "*"
   }
 }
 

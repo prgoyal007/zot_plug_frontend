@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { TextInput, View, Text, StyleSheet } from 'react-native'
 import BasicButton from '../basic_button'
 
 type LoginComp = {
 	onSubmit: (email: string, pass: string) => void
+	error_text?: string | null
 }
 
-export default function LoginComp({ onSubmit }: LoginComp) {
+export default function LoginComp({ onSubmit, error_text }: LoginComp) {
 	const [user, set_user] = useState("")
 	const [pass, set_pass] = useState("")
 
@@ -26,6 +27,7 @@ export default function LoginComp({ onSubmit }: LoginComp) {
 				editable={true}
 				style={styles.textInput}
 			/>
+			{error_text ? <Text style={styles.text}>{error_text}</Text> : null}
 			<BasicButton text="login" onPress={() => onSubmit(user, pass)} style={styles.button} />
 		</View>
 	)
@@ -34,16 +36,17 @@ export default function LoginComp({ onSubmit }: LoginComp) {
 const styles = StyleSheet.create({
 	container: {
 		padding: 16,
-		backgroundColor: null,
+		backgroundColor: undefined,
 		borderRadius: 8,
 		width: '100%',
 		maxWidth: 400,
 		alignSelf: 'center',
 	},
 	text: {
-		fontSize: 18,
+		textAlign: 'center',
+		fontSize: 12,
 		lineHeight: 24,
-		color: '#333',
+		color: "red",
 	},
 	textInput: {
 		padding: 16,

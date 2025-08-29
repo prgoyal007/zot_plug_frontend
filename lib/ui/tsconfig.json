@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "jsx": "react-jsx",
+    "jsx": "react-native",
     "strict": true,
     "esModuleInterop": true,
     "target": "ES2017",
