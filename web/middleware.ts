@@ -1,11 +1,17 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server"
+import { loginRedirectUrl } from "./lib/constants";
 
 export async function middleware(req: NextRequest) {
-  const { pathname } = req.nextUrl;
-  if (!pathname.startsWith("/dashboard")) return NextResponse.next();
+  const parts = req.nextUrl.pathname.split('/').filter(Boolean);
+
+  if (parts[0] !== 'dashboard') return NextResponse.next();
+
+  const id = parts[1] ?? null;
+  // Later on, if there are more rescourses past dashboard/id/foorbar
+  // You can access foobar with parts[2], parts[n]
 
   const cookieHeader = req.headers.get("cookie") ?? "";
-  if (!cookieHeader) return NextResponse.redirect(new URL("/login", req.url));
+  if (!cookieHeader) return NextResponse.redirect(new URL(loginRedirectUrl, req.url));
 
   // Build absolute URL using forwarded headers from Nginx
   const xfProto = req.headers.get("x-forwarded-proto") || "http";
@@ -14,13 +20,17 @@ export async function middleware(req: NextRequest) {
   const url = new URL("/api/valSession", origin);
 
   const sessionRes = await fetch(url, {
-    method: "GET",
-    headers: { cookie: cookieHeader },
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      cookie: cookieHeader
+    },
+    body: JSON.stringify({ id }),
     cache: "no-store",
-  });
+  })
 
   if (!sessionRes.ok) {
-    return NextResponse.redirect(new URL("/auth?mode=login", req.url));
+    return NextResponse.redirect(new URL(loginRedirectUrl, req.url));
   }
 
   return NextResponse.next();

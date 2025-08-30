@@ -39,15 +39,29 @@ export async function login_user(email: string, password: string): Promise<Resul
 	}
 }
 
-export async function valUserID(id: string): Promise<boolean> {
-	const res = await fetch('/api/valSession',
-		{
-			method: "GET",
-			credentials: "same-origin"
-		}
-	).then(async e => await e.json())
+export async function signup_user(firstname: string, lastname: string, username: string, email: string, pass: string): Promise<Result<{ userId: string }>> {
+	try {
+		const signup_res = await fetch('/api/signup', {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				firstname,
+				lastname,
+				username,
+				email,
+				password: pass,
+			})
+		}).then(e => e.json())
 
-	return res.userId == id
+		if (!signup_res.ok) throw new Error(signup_res.message)
+		return { ok: true, value: { userId: signup_res.userId } }
+	} catch (err) {
+		return { ok: false, error: toErrorMessage(err) }
+	}
 }
+
+
 
 
