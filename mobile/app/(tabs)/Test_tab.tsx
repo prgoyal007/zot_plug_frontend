@@ -2,7 +2,7 @@ import Constants from "expo-constants"
 import { View, StyleSheet } from 'react-native';
 import { Test } from "ui/test"
 import { TestButton } from "ui/test_button"
-import { createApiClient } from "api/req"
+import createApiClient from "api/req"
 import { useQuery } from "@tanstack/react-query"
 import { useEffect } from "react";
 
