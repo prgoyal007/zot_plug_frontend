@@ -38,9 +38,13 @@ export default function createApiClient(params: { device: Device, baseUrlOverrid
 		});
 
 		if (!res.ok) {
-			let detail: unknown;
+			let detail: { error: string } | any
 			try { detail = await res.json(); } catch { /* ignore */ }
-			throw new Error(`HTTP ${res.status} ${res.statusText}${detail ? ` — ${JSON.stringify(detail)}` : ""}`);
+			if (res.status === 500) {
+				console.error(`HTTP ${res.status} ${res.statusText}${detail ? ` — ${JSON.stringify(detail)}` : ""}`)
+				throw new Error('Internal Error - Try Again Later')
+			}
+			throw new Error(detail.error ?? "Unkown Error")
 		}
 
 		if (res.status === 204) return undefined as unknown as T;

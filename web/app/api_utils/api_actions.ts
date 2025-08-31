@@ -1,4 +1,5 @@
 import { toErrorMessage } from "./helper";
+import { signUpInfo } from "ui/types";
 type Result<T> = { ok: true; value: T } | { ok: false, error: string }
 
 export async function fetch_test() {
@@ -39,7 +40,7 @@ export async function login_user(email: string, password: string): Promise<Resul
 	}
 }
 
-export async function signup_user(firstname: string, lastname: string, username: string, email: string, pass: string): Promise<Result<{ userId: string }>> {
+export async function signup_user(params: signUpInfo): Promise<Result<{ userId: string }>> {
 	try {
 		const signup_res = await fetch('/api/signup', {
 			method: "POST",
@@ -47,11 +48,11 @@ export async function signup_user(firstname: string, lastname: string, username:
 				"Content-Type": "application/json"
 			},
 			body: JSON.stringify({
-				firstname,
-				lastname,
-				username,
-				email,
-				password: pass,
+				firstname: params.firstname,
+				lastname: params.lastname,
+				username: params.username,
+				email: params.email,
+				password: params.password
 			})
 		}).then(e => e.json())
 

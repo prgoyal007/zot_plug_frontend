@@ -1,34 +1,36 @@
 import { useState } from 'react'
 import { TextInput, View, Text, StyleSheet } from 'react-native'
-import BasicButton from '../basic_button'
+import { LoginComp } from '../types'
+import BasicButton from '../components/basic_button'
 
-type LoginComp = {
-	onSubmit: (email: string, pass: string) => void
-	error_text?: string | null
+function basic_filter_check(onSubmit: (email: string, pass: string) => void, setBasicErr: React.Dispatch<React.SetStateAction<string | null>>, email: string, pass: string) {
+	if (email.length === 0) setBasicErr("Email is empty")
+	else if (pass.length === 0) setBasicErr("Password is empty")
+	else onSubmit(email, pass)
 }
 
-export default function LoginComp({ onSubmit, error_text }: LoginComp) {
-	const [user, set_user] = useState("")
-	const [pass, set_pass] = useState("")
+export default function LoginComp({ onSubmit, errorText, setErrorText }: LoginComp) {
+	const [email, setEmail] = useState("")
+	const [pass, setPass] = useState("")
 
 	return (
 		<View style={styles.container}>
 			<TextInput
-				value={user}
-				onChangeText={set_user}
+				value={email}
+				onChangeText={setEmail}
 				placeholder="Email"
 				editable={true}
 				style={styles.textInput}
 			/>
 			<TextInput
 				value={pass}
-				onChangeText={set_pass}
+				onChangeText={setPass}
 				placeholder="Password"
 				editable={true}
 				style={styles.textInput}
 			/>
-			{error_text ? <Text style={styles.text}>{error_text}</Text> : null}
-			<BasicButton text="login" onPress={() => onSubmit(user, pass)} style={styles.button} />
+			{errorText ? <Text style={styles.text}>{errorText}</Text> : null}
+			<BasicButton text="login" onPress={() => basic_filter_check(onSubmit, setErrorText, email, pass,)} style={styles.button} />
 		</View>
 	)
 }
