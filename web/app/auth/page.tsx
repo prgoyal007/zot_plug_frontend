@@ -4,7 +4,7 @@ import AuthContent from './authCont'
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={undefined}>
       <AuthContent />
     </Suspense>
   )
