@@ -1,7 +1,7 @@
 'use client'
 import { login_user, signup_user } from '../api_utils/api_actions'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { useSearchParams } from 'next/navigation';
 import { signUpInfo } from 'ui/types';
 import LoginComp from 'ui/login/comp'
@@ -33,21 +33,23 @@ export default function Login() {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen">
-      {mode === 'login' ?
-        (
-          <>
-            <LoginComp onSubmit={try_login} errorText={error} setErrorText={setError} />
-            <a href={"/auth?mode=signup"}><h5 className='text-blue-500'>sign up</h5></a>
-          </>
-        )
-        : (
-          <>
-            <SignUpComp onSubmit={try_signup} errorText={error} setErrorText={setError} />
-            <a href={"/auth?mode=login"}><h5 className='text-blue-500'>back</h5></a>
-          </>
-        )
-      }
-    </div>
+    <Suspense fallback={<div>Loading...</div>}>
+      <div className="flex flex-col justify-center items-center h-screen">
+        {mode === 'login' ?
+          (
+            <>
+              <LoginComp onSubmit={try_login} errorText={error} setErrorText={setError} />
+              <a href={"/auth?mode=signup"}><h5 className='text-blue-500'>sign up</h5></a>
+            </>
+          )
+          : (
+            <>
+              <SignUpComp onSubmit={try_signup} errorText={error} setErrorText={setError} />
+              <a href={"/auth?mode=login"}><h5 className='text-blue-500'>login</h5></a>
+            </>
+          )
+        }
+      </div>
+    </Suspense>
   )
 } 
