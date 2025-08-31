@@ -1,19 +1,22 @@
 {
   "name": "ui",
   "version": "1.0.0",
-  "exports": {
-    "./*": "./*.tsx"
-  },
+  "private": true,
+  "exports": { "./*": "./*.tsx" },
+  "sideEffects": false,
   "peerDependencies": {
-    "react": "*",
-    "react-native": "*"
+    "react": ">=18",
+    "react-native": ">=0.76",
+    "react-native-web": ">=0.19"
+  },
+  "peerDependenciesMeta": {
+    "react-native": { "optional": true },
+    "react-native-web": { "optional": true }
   },
   "devDependencies": {
-    "react": "*",
-    "react-native": "*",   
-    "@types/react": "*",
-    "@types/react-native": "*",
-    "typescript": "*"
+    "typescript": "*",
+    "@types/react": "*"
   }
 }
+
 
