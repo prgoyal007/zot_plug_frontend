@@ -36,26 +36,6 @@ export default function Home() {
         }} />
         <BasicButton text='Login' onPress={() => router.push('/auth?mode=login')} />
         <BasicButton text='Test Page' onPress={() => router.push('/(tabs)')} />
-        <TextInput
-          placeholder="Email"
-          placeholderTextColor="#888"      // set explicitly so it's visible
-          editable
-          style={{
-            paddingHorizontal: 16,
-            paddingVertical: 12,           // reasonable vertical padding
-            backgroundColor: 'white',
-            color: 'black',                // this is for typed text, not placeholder
-            borderRadius: 8,
-            width: '100%',
-            // remove fixed height; let RN size it
-            // height: 20,
-            borderWidth: 1,                // optional: makes the box visible
-            borderColor: '#ddd',
-          }}
-          autoCapitalize="none"
-          keyboardType="email-address"
-        />
-
       </View>
     </>
   );
