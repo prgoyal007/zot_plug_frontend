@@ -1,6 +1,6 @@
 import { toErrorMessage } from "./helper";
 import { signUpInfo } from "ui/types";
-type Result<T> = { ok: true; value: T } | { ok: false, error: string }
+import { Result } from "./types";
 
 export async function fetch_test() {
 	try {

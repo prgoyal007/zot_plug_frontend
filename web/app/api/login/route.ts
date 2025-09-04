@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { buildCookie, toErrorMessage } from "@/app/api_utils/helper";
-import { basicCreds } from "@/app/api_utils/types";
+import { basicCreds, CheckUserbasicCredsRes } from "@/app/api_utils/types";
 import createApiClient from "api/req";
-
-interface CheckUserbasicCredsRes { valid: boolean, userId: string }
 const api = createApiClient({ device: "web" })
 
 export async function POST(req: NextRequest) {

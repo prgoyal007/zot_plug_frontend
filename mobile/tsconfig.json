@@ -6,15 +6,19 @@
       "@/*": [
         "./*"
       ],
-      "ui": [ "../lib/ui" ],
-      "api": ["../lib/api"],
-      "api/*" : ["../lib/api/*"],
+      "ui": [
+        "../lib/ui/*"
+      ],
+      "api/*": [
+        "../lib/api/*"
+      ]
     }
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
     ".expo/types/**/*.ts",
-    "expo-env.d.ts"
+    "expo-env.d.ts",
+    "nativewind-env.d.ts"
   ]
 }
