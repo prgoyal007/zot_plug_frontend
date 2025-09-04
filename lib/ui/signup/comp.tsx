@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { SignUpComp } from '../types'
+import { SignUpCompParams } from '../types'
 import { TextInput, View, Text, StyleSheet } from 'react-native'
 import basic_filter_check from './helpers'
 import BasicButton from '../components/basic_button'
 
-export default function SignUpComp({ onSubmit, errorText, setErrorText }: SignUpComp) {
+export default function SignUpComp({ onSubmit, errorText, setErrorText }: SignUpCompParams) {
 	const [userInfo, SetUserInfo] = useState({ firstname: "", lastname: "", username: "", email: "", password: "", confirm: "" })
 	return (
 		<View style={styles.container}>

@@ -3,6 +3,8 @@ import { login_user, signup_user } from "@/api_utils/api_actions"
 import { signUpInfo, basicCreds } from "@/api_utils/types"
 import { useLocalSearchParams, useRouter } from "expo-router"
 import { useState } from "react"
+import LoginComp from 'ui/login/comp'
+import SignUpComp from 'ui/signup/comp'
 
 export default function LoginPage() {
   const { mode } = useLocalSearchParams<{ mode: string }>()
@@ -22,8 +24,14 @@ export default function LoginPage() {
   }
 
   return (
-    <View>
-      <Text>Ello Ello Ello </Text>
+    <View className="justify-center items-center h-screen">
+      {mode === 'login' ? (
+        <LoginComp onSubmit={try_login} errorText={error} setErrorText={setError} />
+      ) : (
+        <>
+          <SignUpComp onSubmit={try_signup} errorText={error} setErrorText={setError} />
+        </>
+      )}
     </View>
   )
 }

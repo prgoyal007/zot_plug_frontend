@@ -1,4 +1,4 @@
-import { View, Text } from "react-native"
+import { View, Text, TextInput } from "react-native"
 import { Test } from "ui/test"
 import { TestButton } from 'ui/test_button'
 import BasicButton from 'ui/components/basic_button'
@@ -34,7 +34,28 @@ export default function Home() {
         <TestButton onPress={async () => {
           console.log(test_data)
         }} />
-        <BasicButton text='Login' onPress={() => router.push('/auth')} />
+        <BasicButton text='Login' onPress={() => router.push('/auth?mode=login')} />
+        <BasicButton text='Test Page' onPress={() => router.push('/(tabs)')} />
+        <TextInput
+          placeholder="Email"
+          placeholderTextColor="#888"      // set explicitly so it's visible
+          editable
+          style={{
+            paddingHorizontal: 16,
+            paddingVertical: 12,           // reasonable vertical padding
+            backgroundColor: 'white',
+            color: 'black',                // this is for typed text, not placeholder
+            borderRadius: 8,
+            width: '100%',
+            // remove fixed height; let RN size it
+            // height: 20,
+            borderWidth: 1,                // optional: makes the box visible
+            borderColor: '#ddd',
+          }}
+          autoCapitalize="none"
+          keyboardType="email-address"
+        />
+
       </View>
     </>
   );

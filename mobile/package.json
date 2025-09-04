@@ -1,9 +1,6 @@
 {
   "name": "zot_plug_mobile",
   "main": "expo-router/entry",
-  "transpilePackages": [
-    "ui"
-  ],
   "version": "1.0.0",
   "scripts": {
     "start": "expo start",

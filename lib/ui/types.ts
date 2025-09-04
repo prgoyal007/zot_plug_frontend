@@ -6,13 +6,15 @@ export type signUpInfo = {
 	password: string,
 }
 
-export type LoginComp = {
-	onSubmit: (email: string, pass: string) => void
+export type basicCreds = { email: string, password: string }
+
+export type LoginCompParams = {
+	onSubmit: (params: basicCreds) => void
 	errorText: string | null
 	setErrorText: React.Dispatch<React.SetStateAction<string | null>>
 }
 
-export type SignUpComp = {
+export type SignUpCompParams = {
 	onSubmit: (params: signUpInfo) => Promise<void>
 	errorText: string | null
 	setErrorText: React.Dispatch<React.SetStateAction<string | null>>
