@@ -1,7 +1,8 @@
 import { basicCreds, CheckUserbasicCredsRes, Result, signUpInfo } from "./types"
 import { toErrorMessage } from "./helper"
 import createApiClient from "api/req"
-const api = createApiClient({ device: "mobile" })
+import Constants from "expo-constants"
+const api = createApiClient({ device: "mobile", baseUrlOverride: Constants.expoConfig?.extra?.API_URL })
 
 export async function login_user(params: basicCreds): Promise<Result<{ userId: string }>> {
 	try {
