@@ -17,6 +17,8 @@ export default function createApiClient(params: { device: Device, baseUrlOverrid
 				? "http://localhost:4000"
 				: "https://zotplug.com/mobile_api"))
 
+	console.log(baseUrl)
+
 	async function fetchJSON<T>(params: {
 		endpoint: string,
 		method: RestMethod,
@@ -37,7 +39,10 @@ export default function createApiClient(params: { device: Device, baseUrlOverrid
 			body: hasBody ? JSON.stringify(params.body) : undefined,
 		});
 
+
 		if (res.headers["map"]["authorization"]) mobileJwt = res.headers["map"]["authorization"].split(" ")[1]
+
+		console.log(res)
 
 		if (!res.ok) {
 			let detail: { error: string } | any
@@ -51,6 +56,8 @@ export default function createApiClient(params: { device: Device, baseUrlOverrid
 
 		if (res.status === 204) return undefined as unknown as T;
 		const data = (await res.json()) as T;
+
+		console.log(`From shared API, ${data}`)
 
 		if (mobileJwt) return { ...data, mobileJwt } as T & { mobileJwt: string }
 		else return data;

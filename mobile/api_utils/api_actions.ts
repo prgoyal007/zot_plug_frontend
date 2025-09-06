@@ -31,6 +31,21 @@ export async function signup_user(params: signUpInfo): Promise<Result<{ userId: 
 	}
 }
 
+export async function validate_jwt(): Promise<Result<boolean>> {
+	try {
+		const res = await api_withMiddleWare<any>({ method: "GET", endpoint: "/api/users/checkUserJwt" })
+
+		console.log("Res back from API")
+		console.log(res)
+
+		if (res) { return { ok: true, value: true } }
+		else { throw new Error("Account Creation Failed") }
+
+	} catch (err) {
+		return { ok: false, error: toErrorMessage(err) }
+	}
+}
+
 // Mainly a test endpoint
 export async function getAllDevices(): Promise<Result<{ userId: string }>> {
 	try {
