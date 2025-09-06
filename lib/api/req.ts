@@ -1,7 +1,7 @@
-type Device = "web" | "mobile";
-type RestMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
-type ReqHeaders = Record<string, string>;
-type ReqBody = Record<string, unknown>;
+export type Device = "web" | "mobile";
+export type RestMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
+export type ReqHeaders = Record<string, string>;
+export type ReqBody = Record<string, unknown>;
 
 /* Url constraint-formatting */
 function joinUrl(base: string, endpoint: string) {
@@ -27,15 +27,17 @@ export default function createApiClient(params: { device: Device, baseUrlOverrid
 		/* Ensuring reqs that are non GET, and contain a body. Must be sent of content-Type "application/json" */
 		const hasBody = params.body && params.method !== "GET";
 		const finalHeaders: ReqHeaders = { ...(params.headers ?? {}) };
+		let mobileJwt = undefined
 		if (hasBody && !finalHeaders["Content-Type"]) {
 			finalHeaders["Content-Type"] = "application/json";
 		}
-
 		const res = await fetch(joinUrl(baseUrl, params.endpoint), {
 			method: params.method,
 			headers: Object.keys(finalHeaders).length ? finalHeaders : undefined,
 			body: hasBody ? JSON.stringify(params.body) : undefined,
 		});
+
+		if (res.headers["map"]["authorization"]) mobileJwt = res.headers["map"]["authorization"].split(" ")[1]
 
 		if (!res.ok) {
 			let detail: { error: string } | any
@@ -48,7 +50,10 @@ export default function createApiClient(params: { device: Device, baseUrlOverrid
 		}
 
 		if (res.status === 204) return undefined as unknown as T;
-		return res.json() as Promise<T>;
+		const data = (await res.json()) as T;
+
+		if (mobileJwt) return { ...data, mobileJwt } as T & { mobileJwt: string }
+		else return data;
 	}
 
 	return {
