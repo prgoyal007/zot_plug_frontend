@@ -1,3 +1,5 @@
-export type basicCreds = { email: string, password: string }
-export type fullCreds = basicCreds & { firstname: string, lastname: string, username: string }
+export type { signUpInfo, basicCreds } from 'ui/types'
+export type Result<T> = { ok: true; value: T } | { ok: false, error: string }
 export interface SessionRes { sessionId: string, minutesAlive: number }
+export interface CheckUserbasicCredsRes { valid: boolean, userId: string }
+

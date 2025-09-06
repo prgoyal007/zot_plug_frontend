@@ -1,14 +1,13 @@
-import { login_user, signup_user } from '../api_utils/api_actions'
-import { useRouter } from 'next/navigation'
-import { useState } from 'react'
-import { useSearchParams } from 'next/navigation';
-import { signUpInfo, basicCreds } from '@/app/api_utils/types';
+import { Text, View } from "react-native"
+import { login_user, signup_user } from "@/api_utils/api_actions"
+import { signUpInfo, basicCreds } from "@/api_utils/types"
+import { Link, useLocalSearchParams, useRouter } from "expo-router"
+import { useState } from "react"
 import LoginComp from 'ui/login/comp'
 import SignUpComp from 'ui/signup/comp'
 
-export default function AuthContent() {
-  const searchParams = useSearchParams()
-  const mode = searchParams.get('mode') === 'signup' ? 'signup' : 'login'
+export default function LoginPage() {
+  const { mode } = useLocalSearchParams<{ mode: string }>()
   const router = useRouter()
   const [error, setError] = useState<string | null>(null)
 
@@ -25,18 +24,19 @@ export default function AuthContent() {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen">
+    <View className="justify-center items-center h-screen">
       {mode === 'login' ? (
         <>
           <LoginComp onSubmit={try_login} errorText={error} setErrorText={setError} />
-          <a href="/auth?mode=signup"><h5 className="text-blue-500">sign up</h5></a>
+          <Link className="pt-2" href={{ pathname: "/auth", params: { mode: "signup" } }}>Sign Up</Link>
         </>
+
       ) : (
         <>
           <SignUpComp onSubmit={try_signup} errorText={error} setErrorText={setError} />
-          <a href="/auth?mode=login"><h5 className="text-blue-500">login</h5></a>
+          <Link className="pt-2" href={{ pathname: "/auth", params: { mode: "login" } }}>Log In</Link>
         </>
       )}
-    </div>
+    </View>
   )
 }

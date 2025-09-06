@@ -1,15 +1,15 @@
 import { useState } from 'react'
 import { TextInput, View, Text, StyleSheet } from 'react-native'
-import { LoginComp } from '../types'
+import { basicCreds, LoginCompParams } from '../types'
 import BasicButton from '../components/basic_button'
 
-function basic_filter_check(onSubmit: (email: string, pass: string) => void, setBasicErr: React.Dispatch<React.SetStateAction<string | null>>, email: string, pass: string) {
+function basic_filter_check(onSubmit: (params: basicCreds) => void, setBasicErr: React.Dispatch<React.SetStateAction<string | null>>, email: string, pass: string) {
 	if (email.length === 0) setBasicErr("Email is empty")
 	else if (pass.length === 0) setBasicErr("Password is empty")
-	else onSubmit(email, pass)
+	else onSubmit({ email, password: pass })
 }
 
-export default function LoginComp({ onSubmit, errorText, setErrorText }: LoginComp) {
+export default function LoginComp({ onSubmit, errorText, setErrorText }: LoginCompParams) {
 	const [email, setEmail] = useState("")
 	const [pass, setPass] = useState("")
 
@@ -37,7 +37,7 @@ export default function LoginComp({ onSubmit, errorText, setErrorText }: LoginCo
 
 const styles = StyleSheet.create({
 	container: {
-		padding: 16,
+		padding: 8,
 		backgroundColor: undefined,
 		borderRadius: 8,
 		width: '100%',
@@ -56,14 +56,11 @@ const styles = StyleSheet.create({
 		color: 'black',
 		borderRadius: 8,
 		width: '100%',
-		height: 20,
-		margin: 8,
+		marginBottom: 16
 	},
 	button: {
 		paddingHorizontal: 16,
 		borderRadius: 8,
 		width: '100%',
-		height: 20,
-		margin: 8,
 	},
 });

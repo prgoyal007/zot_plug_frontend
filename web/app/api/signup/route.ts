@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { fullCreds } from "@/app/api_utils/types";
+import { signUpInfo } from "@/app/api_utils/types";
 import { toErrorMessage } from "@/app/api_utils/helper";
 import { buildCookie } from "@/app/api_utils/helper";
 import createApiClient from "api/req"
@@ -7,7 +7,7 @@ import createApiClient from "api/req"
 const api = createApiClient({ device: "web" })
 
 export async function POST(req: NextRequest) {
-	const body: fullCreds = await req.json()
+	const body: signUpInfo = await req.json()
 	const { firstname, lastname, username, email, password } = body
 	try {
 		const res = await api.fetchJSON<{ userId: string }>({ method: "POST", endpoint: "/api/users/addUser", body: { firstname, lastname, username, email, password } })

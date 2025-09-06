@@ -1,11 +1,14 @@
 import { useState } from 'react'
-import { SignUpComp } from '../types'
-import { TextInput, View, Text, StyleSheet } from 'react-native'
+import { SignUpCompParams } from '../types'
+import { TextInput, View, Text, StyleSheet, useWindowDimensions } from 'react-native'
 import basic_filter_check from './helpers'
 import BasicButton from '../components/basic_button'
 
-export default function SignUpComp({ onSubmit, errorText, setErrorText }: SignUpComp) {
+export default function SignUpComp({ onSubmit, errorText, setErrorText }: SignUpCompParams) {
 	const [userInfo, SetUserInfo] = useState({ firstname: "", lastname: "", username: "", email: "", password: "", confirm: "" })
+	const { width, height } = useWindowDimensions()
+	const isMobile = width >= 350
+
 	return (
 		<View style={styles.container}>
 			<TextInput
@@ -15,7 +18,7 @@ export default function SignUpComp({ onSubmit, errorText, setErrorText }: SignUp
 				editable={true}
 				style={styles.textInput}
 			/>
-			<View style={styles.row}>
+			<View style={!isMobile ? styles.row : null}>
 				<TextInput
 					value={userInfo.firstname}
 					onChangeText={(firstname) => SetUserInfo((prev) => ({ ...prev, firstname }))}
@@ -87,14 +90,11 @@ const styles = StyleSheet.create({
 		color: 'black',
 		borderRadius: 8,
 		width: '100%',
-		height: 20,
 		marginVertical: 8,
 	},
 	button: {
-		paddingHorizontal: 16,
 		borderRadius: 8,
 		width: '100%',
-		height: 20,
 		marginVertical: 8,
 	},
 })
