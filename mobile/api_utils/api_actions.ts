@@ -7,9 +7,6 @@ export async function login_user(params: basicCreds): Promise<Result<{ userId: s
 		const { valid, userId, mobileJwt } = await api.fetchJSON<CheckUserbasicCredsRes>({ endpoint: "/api/users/checkUserCreds", method: "POST", body: { email: params.email, password: params.password } })
 
 		await SecureStore.setItemAsync("access_token", mobileJwt);
-		const token = await SecureStore.getItemAsync("access_token");
-
-		console.log(`Token: ${token}`)
 
 		if (!valid) throw new Error("Invalid Credentials")
 		return { ok: true, value: { userId } }
@@ -33,13 +30,10 @@ export async function signup_user(params: signUpInfo): Promise<Result<{ userId: 
 
 export async function validate_jwt(): Promise<Result<boolean>> {
 	try {
-		const res = await api_withMiddleWare<any>({ method: "GET", endpoint: "/api/users/checkUserJwt" })
-
-		console.log("Res back from API")
-		console.log(res)
+		const res = await api_withMiddleWare<any>({ method: "POST", endpoint: '/api/users/checkUserJwt' })
 
 		if (res) { return { ok: true, value: true } }
-		else { throw new Error("Account Creation Failed") }
+		else { throw new Error("Token Validation Failed") }
 
 	} catch (err) {
 		return { ok: false, error: toErrorMessage(err) }

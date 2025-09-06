@@ -5,16 +5,21 @@ import BasicButton from 'ui/components/basic_button'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import { useRouter } from 'expo-router'
+import { getAllDevices } from "@/api_utils/api_actions"
 
 export default function Home() {
   const router = useRouter()
   /* useQuery is best for any kind of data fetching logic */
   const { data: test_data, isLoading } = useQuery({
     queryKey: ['test'],
-    queryFn: async () => { return (<Text>Test test</Text>) }
+    queryFn: async () => await getAllDevices()
   })
 
   /* useEffect is situational, use if you want a action to run on first render */
+  function log_test_data() {
+    console.log(test_data)
+  }
+
   useEffect(() => {
     if (!isLoading) {
       console.log(test_data)
@@ -23,17 +28,9 @@ export default function Home() {
 
   return (
     <>
-      {/* Tailwind in-line styling */}
-      <View className="bg-red-500 w-full h-10"> <Text>test test</Text></View>
-      { /* Shared UI comp, check proj_root/ui to check how this works */}
-      <View className="bg-green-500 w-full h-10">
-        <Text>{isLoading ? "Fetching_data" : "Data logged to client console"}</Text>
-      </View>
       <View className="flex flex-col justify-center mt-4 gap-y-4">
         <Test />
-        <TestButton onPress={async () => {
-          console.log(test_data)
-        }} />
+        <TestButton onPress={log_test_data} />
         <BasicButton text='Login' onPress={() => router.push('/auth?mode=login')} />
         <BasicButton text='Test Page' onPress={() => router.push('/(tabs)')} />
       </View>
