@@ -37,7 +37,10 @@ export default function createApiClient(params: { device: Device, baseUrlOverrid
 			body: hasBody ? JSON.stringify(params.body) : undefined,
 		});
 
-		if (res.headers["map"]["authorization"]) mobileJwt = res.headers["map"]["authorization"].split(" ")[1]
+		const authHeader = res.headers.get("authorization");
+		if (authHeader) {
+			mobileJwt = authHeader.split(" ")[1];
+		}
 
 		if (!res.ok) {
 			let detail: { error: string } | any
@@ -46,7 +49,9 @@ export default function createApiClient(params: { device: Device, baseUrlOverrid
 				console.error(`HTTP ${res.status} ${res.statusText}${detail ? ` — ${JSON.stringify(detail)}` : ""}`)
 				throw new Error('Internal Error - Try Again Later')
 			}
-			throw new Error(detail.error ?? "Unkown Error")
+			
+			//throw new Error(detail.error ?? "Unknown Error")
+			throw new Error(detail?.error ?? detail?.message ?? `HTTP ${res.status} ${res.statusText}`)
 		}
 
 		if (res.status === 204) return undefined as unknown as T;
