@@ -1,10 +1,5 @@
 import { View, StyleSheet } from "react-native";
-
-type progressBarProps = {
-	currProgress: number,
-	maxProgress: number,
-	height: number,
-}
+import { progressBarProps } from "../types";
 
 export default function ProgressBar({ height, currProgress, maxProgress }: progressBarProps) {
 	let percent = (currProgress / maxProgress) * 100
@@ -18,7 +13,7 @@ export default function ProgressBar({ height, currProgress, maxProgress }: progr
 const styles = StyleSheet.create({
 	background: {
 		backgroundColor: 'gray',
-		borderRadius: 20,
+		borderRadius: 5,
 		overflow: 'hidden',
 		alignSelf: 'stretch',
 		width: '100%'

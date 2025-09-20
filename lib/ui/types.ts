@@ -19,3 +19,9 @@ export type SignUpCompParams = {
 	errorText: string | null
 	setErrorText: React.Dispatch<React.SetStateAction<string | null>>
 }
+
+export type progressBarProps = {
+	currProgress: number,
+	maxProgress: number,
+	height: number,
+}

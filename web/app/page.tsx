@@ -5,11 +5,12 @@ import BasicButton from 'ui/components/basic_button'
 import DailyTarget from 'ui/dailyTarget/comp'
 import { useQuery } from '@tanstack/react-query'
 import { fetch_test } from './api_utils/api_actions'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 export default function Home() {
   const router = useRouter()
+  const [progress, setProgress] = useState(0)
   /* useQuery is best for any kind of data fetching logic */
   const { data: test_data, isLoading } = useQuery({
     queryKey: ['test'],
@@ -21,7 +22,15 @@ export default function Home() {
     if (!isLoading) {
       console.log(test_data)
     }
-  }, [isLoading, test_data])
+    if (progress < 1200) {
+
+      const interval = setInterval(() => {
+        setProgress(prev => prev + 1);
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }
+  }, [isLoading, test_data, progress, setProgress])
 
   return (
     <>
@@ -38,7 +47,7 @@ export default function Home() {
           console.log(data)
         }} />
         <BasicButton text='Login' onPress={() => router.push('/auth?mode=login')} />
-        <DailyTarget />
+        <DailyTarget height={25} currProgress={progress} maxProgress={1200} />
       </div>
     </>
   );
