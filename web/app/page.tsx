@@ -2,6 +2,7 @@
 import { Test } from 'ui/test'
 import { TestButton } from 'ui/test_button'
 import BasicButton from 'ui/components/basic_button'
+import DailyTarget from 'ui/dailyTarget/comp'
 import { useQuery } from '@tanstack/react-query'
 import { fetch_test } from './api_utils/api_actions'
 import { useEffect } from 'react'
@@ -37,6 +38,7 @@ export default function Home() {
           console.log(data)
         }} />
         <BasicButton text='Login' onPress={() => router.push('/auth?mode=login')} />
+        <DailyTarget />
       </div>
     </>
   );
