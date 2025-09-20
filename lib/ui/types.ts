@@ -25,3 +25,8 @@ export type progressBarProps = {
 	maxProgress: number,
 	height: number,
 }
+
+export type dailyTargetProps = {
+	currProgress: number,
+	maxProgress: number,
+}

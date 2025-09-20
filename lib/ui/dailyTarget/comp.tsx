@@ -1,9 +1,9 @@
 import { Text, View, StyleSheet } from "react-native"
 import ProgressBar from "../components/progress_bar"
 import Icon from "../icons/Icon"
-import { progressBarProps } from "../types"
+import { dailyTargetProps } from "../types"
 
-export default function DailyTarget({ height, currProgress, maxProgress }: progressBarProps) {
+export default function DailyTarget({ currProgress, maxProgress }: dailyTargetProps) {
 	return (
 		<View style={styles.container}>
 			<View style={styles.row}>
