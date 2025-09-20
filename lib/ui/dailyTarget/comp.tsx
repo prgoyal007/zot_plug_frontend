@@ -23,7 +23,9 @@ export default function DailyTarget({ currProgress, maxProgress }: dailyTargetPr
 
 const styles = StyleSheet.create({
 	container: {
+		alignSelf: 'center',
 		padding: 10,
+		width: '100%',
 		maxWidth: 450,
 		backgroundColor: 'lightgreen',
 		borderColor: 'darkgreen',
