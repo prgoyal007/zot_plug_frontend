@@ -5,14 +5,14 @@ import BasicButton from 'ui/components/basic_button'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import { useRouter } from 'expo-router'
-import { getAllDevices } from "@/api_utils/api_actions"
+import { testDataPost } from "@/api_utils/api_actions"
 
 export default function Home() {
   const router = useRouter()
   /* useQuery is best for any kind of data fetching logic */
   const { data: test_data, isLoading } = useQuery({
     queryKey: ['test'],
-    queryFn: async () => await getAllDevices()
+    queryFn: async () => await testDataPost()
   })
 
   /* useEffect is situational, use if you want a action to run on first render */

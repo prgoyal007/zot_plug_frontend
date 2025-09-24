@@ -31,6 +31,7 @@ export default function createApiClient(params: { device: Device, baseUrlOverrid
 		if (hasBody && !finalHeaders["Content-Type"]) {
 			finalHeaders["Content-Type"] = "application/json";
 		}
+
 		const res = await fetch(joinUrl(baseUrl, params.endpoint), {
 			method: params.method,
 			headers: Object.keys(finalHeaders).length ? finalHeaders : undefined,
@@ -49,7 +50,7 @@ export default function createApiClient(params: { device: Device, baseUrlOverrid
 				console.error(`HTTP ${res.status} ${res.statusText}${detail ? ` — ${JSON.stringify(detail)}` : ""}`)
 				throw new Error('Internal Error - Try Again Later')
 			}
-			
+
 			//throw new Error(detail.error ?? "Unknown Error")
 			throw new Error(detail?.error ?? detail?.message ?? `HTTP ${res.status} ${res.statusText}`)
 		}

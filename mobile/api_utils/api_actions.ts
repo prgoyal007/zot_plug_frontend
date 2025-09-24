@@ -41,11 +41,11 @@ export async function validate_jwt(): Promise<Result<boolean>> {
 }
 
 // Mainly a test endpoint
-export async function getAllDevices(): Promise<Result<{ userId: string }>> {
+export async function testDataPost(): Promise<Result<{ userId: string }>> {
 	try {
-		const res = await api_withMiddleWare<any>({ method: "GET", endpoint: "/api/devices" })
+		const res = await api_withMiddleWare<any>({ method: "POST", endpoint: "/api/test", body: { testSent: "Defined from func testDataPost()" } })
 		if (res) { return { ok: true, value: { ...res } } }
-		else { throw new Error("Account Creation Failed") }
+		else { throw new Error("Failed to get test data") }
 	} catch (err) {
 		return { ok: false, error: toErrorMessage(err) }
 	}
