@@ -1,3 +1,4 @@
+// lib/ui/types.ts
 export type signUpInfo = {
 	firstname: string,
 	lastname: string,
@@ -29,4 +30,16 @@ export type progressBarProps = {
 export type dailyTargetProps = {
 	currProgress: number,
 	maxProgress: number,
+}
+
+export type CategorySize = 'big' | 'small'
+
+export type CategoryProps = {
+	displayText: string,
+	imageFilePath: string | number,
+	size?: CategorySize,
+	onPress?: () => void,
+	accessibilityLabel?: string,
+	testID?: string,
+	style?: any,
 }
