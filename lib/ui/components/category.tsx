@@ -4,7 +4,7 @@ import { Pressable, View, Text, Image, StyleSheet } from "react-native";
 import type { CategoryProps } from "../types";
 import { CATEGORY_TOKENS, COLORS } from "../styleTokens";
 
-const Category: React.FC<CategoryProps> = ({
+const Category = ({
     displayText,
     imageFilePath,
     size = 'big',
@@ -12,7 +12,7 @@ const Category: React.FC<CategoryProps> = ({
     accessibilityLabel,
     testID,
     style
-}) => {
+}: CategoryProps) => {
     const tokens = size === 'big' ? CATEGORY_TOKENS.big : CATEGORY_TOKENS.small;
     const source = typeof imageFilePath === 'string' ? { uri: imageFilePath } : (imageFilePath as any);
 

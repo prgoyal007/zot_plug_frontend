@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "declaration": true,
     "jsx": "react-native",
     "strict": true,
     "esModuleInterop": true,

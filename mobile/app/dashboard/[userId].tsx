@@ -5,8 +5,7 @@ import { useEffect } from "react"
 import { useQuery } from '@tanstack/react-query'
 import { useLocalSearchParams, useRouter } from 'expo-router'
 import { validate_jwt } from "@/api_utils/api_actions"              // removed getAllDevices
-import BasicButton from 'ui/components/basic_button'
-import { Category } from "ui/components"
+import { Category, BasicButton } from "ui/components"
 
 export default function Dashboard() {
   const { userId } = useLocalSearchParams();
@@ -46,21 +45,21 @@ export default function Dashboard() {
       <View style={styles.grid}>
         <Category
           displayText="Lightning"
-          imageFilePath="/images/lightning.png"
+          imageFilePath={require('../../../assets/images/lightning.png')}
           size="big"
           onPress={() => console.log('Lightning pressed')}
         />
 
         <Category
           displayText="Fans"
-          imageFilePath="/images/fan.png"
+          imageFilePath={require('../../../assets/images/fan.png')}
           size="small"
           onPress={() => console.log('Fans pressed')}
         />
 
         <Category
           displayText="Heating"
-          imageFilePath="/images/heater.png"
+          imageFilePath={require('../../../assets/images/heating.png')}
           size="small"
           onPress={() => console.log('Heating pressed')}
         />
