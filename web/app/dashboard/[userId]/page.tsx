@@ -1,7 +1,9 @@
+// web/app/dashboard/[userId]/page.tsx
+
 'use client'
 import React from "react"
 import { useParams } from "next/navigation"
-import Category from "ui/components/Category"
+import { Category } from "ui/components"
 
 export default function Dashboard() {
 	const { userId } = useParams<{ userId: string }>();
