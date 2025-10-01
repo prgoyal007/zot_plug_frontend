@@ -4,7 +4,7 @@ import { Pressable, View, Text, Image, StyleSheet } from "react-native";
 import type { CategoryProps } from "../types";
 import { CATEGORY_TOKENS, COLORS } from "../styleTokens";
 
-const category: React.FC<CategoryProps> = ({
+const Category: React.FC<CategoryProps> = ({
     displayText,
     imageFilePath,
     size = 'big',
@@ -62,4 +62,4 @@ const styles = StyleSheet.create({
     pressed: { opacity: 0.85 }
 });
 
-export default category;
+export default Category;
