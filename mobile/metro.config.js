@@ -15,6 +15,7 @@ config.resolver = {
   alias: {
     ...(config.resolver?.alias || {}),
     'react-native': path.join(projectRoot, 'node_modules/react-native'),
+    ui: path.resolve(workspaceRoot, 'lib/ui'),
   },
   sourceExts: [...config.resolver.sourceExts, 'cjs'],
 };
