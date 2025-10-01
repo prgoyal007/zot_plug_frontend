@@ -7,6 +7,7 @@
   },
   "sideEffects": false,
   "peerDependencies": {
+    "react": ">=18",
     "react-native": ">=0.76",
     "react-native-web": ">=0.19"
   },

@@ -1,3 +1,5 @@
+// tsconfig.json
+
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
@@ -6,7 +8,7 @@
       "@/*": [
         "./*"
       ],
-      "ui": [
+      "ui/*": [
         "../lib/ui/*"
       ],
       "api/*": [
